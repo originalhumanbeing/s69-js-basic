@@ -73,7 +73,70 @@ a=1+2;
 b=a+3; 
 // b=6라고 당연히 생각, 좌->우, 상->하로 실행되는 흐름을 가지고 있으니까
 ```
-4. Expression Statement
-5. Declare Statement
+4. Expression Statement: 식을 문으로 인정함 (3+1;도 문으로 인정되므로 오류나지 않음)
+5. Declare Statement (변수선언문): 변수를 선언하기 위한 문으로 es5 (var) es6 (let, const)가 있음
+```
+[선언문 활용법]
+var a, b, c 식으로 나열할 수 있음
+var a=3, b=1, c 식으로 값을 할당하며 나열할 수도 있음 (모든 값을 할당하지 않아도 됌)
+**하지만 const는 반드시 선언과 동시에 할당해야 함**
+```
+
+#### Expressions의 종류
+1. Value Expression (값식): 값이 식인 경우 (단순한 값 하나인 3도 훌륭한 식이 될 수 있음)
+2. Operator Expression (연산식): 연산자(+, -, ...)가 포함된 식
+3. Call Expression (호출식): 함수를 호출한 것도 식이 될 수 있음 (함수는 return값이 있는데 이는 하나의 값에 수렴하니까/ JS에서는 하나의 return만 있을 수 있음)  
+
+-> 위 세 가지 식은 보통 결합됌  
+3인 값을 다루는 Value Expression은 +가 들어간 Operator Expression과 합쳐지고  
+이때 함수를 호출해서 위 과정을 처리한다면 Call Expression도 결합된 것  
+-> Expressions 각각은 독립된 존재지만 결국 Operator Expression으로 수렴됨  
+-> 식은 항상 값으로 수렴됨  
+-> 고로, 식 = 값
+
+#### Operation의 종류
+<항의 갯수로 분류하는 경우>
+1. 이항연산자 (항이 두 개 필요한 연산자)  
+덧셈(+)처럼 좌항과 우항의 합을 더하는 연산
+2. Unary Operation = 일항/단항연산자 (현재 값의 부호를 바꿔주는 연산자)  
+예컨대 -1에서 -는 두 개 항을 서로 빼는 연산자가 아님  
+3. Comma Operation = n항연산자 (항을 무한하게 가질 수 있는 연산자)
+
+<용도에 따라 분류하는 경우>
+1. Conditional (조건연산자, 삼항연산자)
+2. Arithmetic (더하기같은 산술연산자)
+
+<특수한 연산자>  
+1. **Assignment(할당) 연산자**  
+변수에 값을 넣는 행위 = assignment라고 함  
+JS에서는 assignment했을 시, 무조건 우항의 값으로 귀결됨  
+JS에서 **"좌<-우"로 해석되는 유일한 부분**
+```javascript
+a=3;
+// a가 3의 값으로 귀결됨
+b=a=3;
+// a=3까지가 3으로 귀결됐기 때문에 b가 3이라고 생각하기
+```
+2. **Complex Assignment (복합할당) 연산자**  
++와 =을 합친 형태 (+=, -= 등등)
+
+#### 참고: 컴퓨터의 기본 작동 원리
+**- 컴퓨터는 2+1을 어떻게 하는 것일까?**
+```
+2 = 10(2진법), 1 = 01(2), 더하기한 결과 3 = 11(2)
+컴퓨터는 덧셈을 산술연산으로 처리하는 것이 아니라 논리연산으로 처리함
+```
+ 
+#### Convention이란
+개발자들끼리 **프로그램을 짤 때 서로 약속한 규칙들**  
+-> 규칙을 잘 지켜야 호환성이 높아진다
+
+
+#### 개발 용어를 알아듣고 그것으로 대화하고 생각할 수 있어야 개발할 수 있다
+-> 'console.log를 입력해보세요'라는 말을 풀어서  
+-> console창에 console이라는 객체가 있죠, 그 객체에 log라는 메소드가 있는데 그 메소드를 호출해보세요  
+-> '문자열/숫자를 입력해보세요'라는 말을 풀어서  
+-> 문자열 리터럴/ 숫자열 리터럴로 알아듣기  
+(깨알 지식: console.log는 반환값이 없기 때문에 undefined)
 
 참고: [s69-javascript 1강 영상](https://youtu.be/AjVj7wWFD8I?list=PLBA53uNlbf-vBJXtKI_0hLZzD6NRT1Aeb "디기딩 s69-javascript 1강")
